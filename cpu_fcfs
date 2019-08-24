@@ -1,0 +1,25 @@
+#include<stdio.h> 
+void main() 
+{ 
+        int n,i,q[20],h,sum=0,k; 
+        printf("Enter size : "); 
+        scanf("%d",&n); 
+        printf("Head : "); 
+        scanf("%d",&q[0]); 
+        printf("Queue\n"); 
+        for(i=1;i<=n;i++) 
+        { 
+                scanf("%d",&q[i]); 
+        } 
+        for(i=0;i<n;i++) 
+        { 
+                if(q[i]>q[i+1]) 
+                        k=q[i]-q[i+1]; 
+                else 
+                        k=q[i+1]-q[i]; 
+                printf("%d to %d\t:  %d",q[i],q[i+1],k);printf("\n"); 
+                sum=sum+k; 
+        } 
+        float avg=(float)sum/n; 
+        printf("Total Seek Time is\t:  %d\nAverage Seek time\t:  %f\n",sum,avg); 
+} 
