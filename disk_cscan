@@ -1,0 +1,63 @@
+#include<stdio.h> 
+void main() 
+{ 
+        int n,count=0,start,i,j,q[20],h,sum=0,k,temp; 
+        printf("Enter size : "); 
+        scanf("%d",&n); 
+        printf("Head : "); 
+        scanf("%d",&h); 
+        printf("Queue\n"); 
+        for(i=0;i<n;i++) 
+        { 
+                scanf("%d",&q[i]); 
+        } 
+        for(i=0;i<n;i++) 
+        { 
+                for(j=i+1;j<n;j++) 
+                { 
+                        if(q[i]>q[j]) 
+                        { 
+                                temp=q[i]; 
+                                q[i]=q[j]; 
+                                q[j]=temp; 
+                        } 
+                } 
+        } 
+        printf(".......Goto %d to 199.......\n",h); 
+        i=h;j=0; 
+        while(j<n) 
+        { 
+
+                if(q[j]>i) 
+                { 
+                        if(count==0){count++;start=j;} 
+                        k=q[j]-i; 
+                        printf("%d to %d\t: %d\n",i,q[j],k); 
+                        sum=sum+k; 
+                        i=q[j]; 
+                } 
+                j++; 
+        } 
+        if(count==0) 
+        { 
+                sum=sum+(199-h); 
+                start=n; 
+        } 
+        else 
+        { 
+                k=199-q[n-1]; 
+                printf("%d to 199\t: %d\n",q[n-1],199-q[j-1]);sum=sum+k; 
+        } 
+        sum=sum+199; 
+        j=0;printf(".......Goto 199 to 0.......\n"); 
+        printf("0 to %d \t: %d\n",q[j],q[j]);sum=sum+q[j]; 
+        while(j<start-1) 
+        { 
+                k=q[j+1]-q[j]; 
+                printf("%d to %d\t: %d",q[j],q[j+1],k);printf("\n"); 
+                sum=sum+k; 
+                j++; 
+        } 
+        printf("Total Seek time is\t: %d\n",sum); 
+        printf("Average Seek time is\t: %f\n",(float)sum/n); 
+} 
