@@ -1,0 +1,54 @@
+#include<stdio.h>
+int main()
+{
+int i,f=1,j,n,bt[20],rt[20],wt[20],tat[20],sumw=0,sum=0,q,t=0;
+float avwt,avtat;
+int rem;
+printf("enter the no:of processes:\n");
+scanf("%d",&n);
+printf("enter the burst time\n");
+for(i=0;i<n;i++)
+{
+scanf("%d",&bt[i]);
+rt[i]=bt[i];
+wt[i]=0;
+}
+printf("enter the time quantum\n");
+scanf("%d",&q);
+while(1)
+{
+f=1;
+for(i=0;i<n;i++)
+{
+if(rt[i]>0)
+{ f=0;
+if(rt[i]>q)
+{
+t=t+q;
+rt[i]=rt[i]-q;
+}
+else
+{
+t=t+rt[i];
+wt[i]=t-bt[i];
+rt[i]=0;
+}
+}
+}
+if(f==1)
+break;
+}
+printf("\nprocess\tburst time\twaiting time\tturn around time\n");
+for(i=0;i<n;i++)
+{
+tat[i]=wt[i]+bt[i];
+sum+=tat[i];
+sumw+=wt[i];
+
+printf("p[%d]\t\t%d\t\t%d\t\t%d\n",i,bt[i],wt[i],tat[i]);
+}
+avwt=(float)sumw/n;
+avtat=(float)sum/n;
+printf("average waiting time:%f\n",avwt);
+printf("average turn around time:%f\n",avtat);
+}
